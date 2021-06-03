@@ -1,0 +1,61 @@
+<h1>
+    {{'cart.general.title' | t}}
+    <span class="cart-item-count">
+        {{ cart.item_count }}
+    </span>
+</h1>
+{% if cart.item_count > 0 %}
+<h2> {{'cart.general.preorder_info' | t}}</h2>
+  <form action="/cart" method="post" novalidate>
+    <table>
+      <thead>
+        <th colspan="2">{{'cart.lines.title' | t}}
+        </th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+          <tr>
+            <td>
+                {% if item.quantity > 1 %}
+                    {{item.quantity}} X 
+                {%endif%} 
+                {{ item.product.title }} &ndash; {{ item.variant.title }}
+            </td>
+            <td>
+              {{ item.line_price | money }}
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">X</a>
+
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <table id="cart-totals">
+        <tbody>
+            <tr>
+                <td>{{'cart.lines.shipping'| t}}</td>
+                <td>{{'cart.lines.free' | t}}</td>
+            </tr>
+            <tr>
+                <td>{{'cart.lines.subtotal'| t}}</td>
+                <td>{{ cart.total_price | money }} </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+      <button type="submit" name="checkout">{{ 'cart.general.checkout' | t}}</button>
+    </div>
+  </form>
+  <p>
+    {{'cart.general.support_title' | t}}
+      <a href="mailto:{{'cart.general.support_email'| t}}">{{'cart.general.support_email'| t}}</a>
+  </p>
+{% else %}
+  <h2>cart</h2>
+  {{'cart.general.empty'| t}}
+  {% for i in (1..3) %}
+      <div class="empty-line"></div>
+  {% endfor %}
+
+  <a href="/">{{'cart.general.back'| t}}</a>
+{% endif %}

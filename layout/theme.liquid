@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>{{ page_title }}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  {{ content_for_header }} <!-- Header hook for plugins -->
+  {{ 'application.css' | asset_url | stylesheet_tag }}
+  {{ 'application.js' | asset_url | script_tag }}
+</head>
+<body class="template-{{ template }}">
+
+
+    {% if template != 'cart' %}
+        <a href="/cart" class="link-to-cart">
+            {% if cart.item_count > 0 %}
+                {{ 'cart.button.filled' | t}}
+            {% else %}
+                {{ 'cart.button.empty' | t}}
+            {% endif %}
+        </a>
+    {% else %}
+        <a href="/" class="link-to-home">
+            {{ 'cart.button.close' | t}}
+        </a>
+    {% endif %}
+
+    <main role="main">
+        {{ content_for_layout }}
+    </main>
+</body>
+</html>
