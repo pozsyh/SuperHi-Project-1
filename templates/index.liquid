@@ -1,45 +1,61 @@
 {% assign mainProduct = all_products['fitra-activity-band'] %}
 
-<h1>{{ mainProduct.title }}</h1>
+<div id="page-index">
 
-<div id="product-images">
-    {% comment %} iterate images using for {% endcomment %}
-    {% for image in mainProduct.images %}
-    <div class="single-product-image">
-        <img src="{{ image | | img_url: 'large' }}"/>
-    {% endfor %}
-    </div>
-</div>
-
-<div id="product-info">
-    <div class="headline">
-        <h2>{{ 'product.copy.headline' | t }}</h2>
-    </div>
-    <div class="description">
-        <h3>{{ 'product.copy.description_headline' | t }}</h3>
-        {{ mainProduct.description }}
+    <div id="product-images" class="sticky-side-image">
+        {% comment %} iterate images using for {% endcomment %}
+        {% for image in mainProduct.images %}
+        <div class="single-product-image">
+            <img src="{{ image | | img_url: 'x1440' }}" />
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="details">
-        <ul>
-            <li>{{ 'product.details_list.item1' | t }}</li>
-            <li>{{ 'product.details_list.item2' | t }}</li>
-        </ul>
+    <div id="product-info" class="main-content grid">
+        <div class="valign-center">
+            <h1 class="headline-big">{{ mainProduct.title | remove: ' Activity Band'}}</h1>
+        </div>
+    <!-- Begin Info Grid  -->
+        <div id="product-info-content" class="grid two-columns">
+            <div class="headline valign-bottom">
+                <h2>{{ 'product.copy.headline' | t }}</h2>
+            </div>
+            <div class="description">
+                <h3>{{ 'product.copy.description_headline' | t }}</h3>
+               <div class="description-content">
+                    <p>{{ mainProduct.description }}</p>
+               </div>
+            </div>
+
+            <div class="details">
+                <ul class="list-stroke">
+                    <li>{{ 'product.details_list.item1' | t }}</li>
+                    <li>{{ 'product.details_list.item2' | t }}</li>
+                </ul>
+            </div>
+
+            <div class="form-wrapper">
+                <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+                    <label for="productSelect">{{ mainProduct.options.first }}</label>
+                    <div class="styled-select">
+                        <select name="id" id="productSelect">
+                            {% for variant in mainProduct.variants %}
+                            <option value="{{ variant.id }}"> {{ variant.title }} </option>
+                            {% endfor %}
+                        </select>
+                        <div class="select-arrow">
+                            <img src="{{ 'icon-arrow-down.svg' | asset_url }}" alt="icon arrow down">
+                        </div>
+                    </div>
+                    <button type="submit" name="add" id="add-to-cart-button">
+                        {{ 'product.form.submit' | t }}
+                        <span class="product-price">{{ mainProduct.price | money_without_trailing_zeros }}</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        <!-- End Info Grid -->
     </div>
 
-    <div class="form-wrapper">
-        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-           <label for="productSelect">{{ mainProduct.options.first }}</label>
-            <select name="id" id="productSelect">
-                {% for variant in mainProduct.variants %}
-                    <option value="{{ variant.id }}"> {{ variant.title }} </option>
-                {% endfor %}
-            </select>
-            <button type="submit" name="add" id="AddToCart">
-                {{ 'product.form.submit' | t }}
-                <span class="product-price">{{ mainProduct.price | money_without_trailing_zeros }}</span>
-            </button>
-        </form>
-    </div>
-    
 </div>

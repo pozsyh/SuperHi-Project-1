@@ -37,7 +37,8 @@
             "title": "Order Summary",
             "shipping": "Shipping",
             "subtotal": "Subtotal",
-            "free": "Free"
+            "free": "Free",
+            "remove": "Remove"
         }
    }
 }
