@@ -253,6 +253,7 @@ button {
 }
 #add-to-cart-button .product-price {
     float: right;
+    font-size: $color-accent;
 }
 
 // Cart Styles
@@ -283,10 +284,6 @@ button {
     border: 0;
     background: $black;
 }
-#cart-content {
-    padding-bottom: $line-global * 8;
-}
-#
 #cart-title {
     position: relative;
 }
@@ -299,8 +296,12 @@ button {
     -moz-text-fill-color: transparent;
     -moz-text-stroke-width: 2px;
 }
+#cart.cart-filled #cart-content {
+    padding-bottom: $line-global * 8;
+    grid-template-rows: auto $line-global * 2 ;
+}
 #cart-empty-lines,
-#back-to-fitra{
+#back-to-fitra {
     grid-column: 2;
 }
 .empty-line {
@@ -321,7 +322,6 @@ button {
 
 }
 #cart-totals {
-    margin-bottom: $line-global * 5;
     border-bottom: 1px solid $white;
 }
 #cart-form-wrap {
@@ -331,7 +331,7 @@ button {
 #checkout-button {
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: -($line-global * 8); // brings checkout button down
     left: 0;
 }
 #cart-support p {
@@ -381,6 +381,7 @@ td:last-child {
     padding: $line-global 0 $line-global $line-global;
     display: none;
     background: $color-accent;
+    color: $black;
 }
 .remove-line:hover .remove-text {
     display: block;

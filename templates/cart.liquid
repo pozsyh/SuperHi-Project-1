@@ -12,7 +12,6 @@
             </h1>
         </div>
         <div id="cart-content" class="grid two-columns">
-
             {% if cart.item_count > 0 %}
             <div class="valign-bottom">
                 <h2> {{'cart.general.preorder_info' | t}}</h2>
@@ -57,7 +56,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="submit" name="checkout">{{ 'cart.general.checkout' | t}}</button>
+                        <button id="checkout-button" type="submit" name="checkout">{{ 'cart.general.checkout' | t}}</button>
                     </div>
                 </form>
             </div>
