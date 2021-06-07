@@ -1,4 +1,4 @@
-$main-font: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+$main-font: 'Rubik', Arial, Helvetica, sans-serif;
 
 $black: #000000;
 $white: #FFFFFF;
@@ -54,7 +54,7 @@ body {
 h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin: 0;
     padding: 0;
-    font-weight: 400;
+    font-weight: 300;
 }
 a {
     text-decoration: none;
@@ -223,12 +223,6 @@ button {
 }
 
 // index styles
-#page-index {
-}
-#product-info {
-    // pass two values that define the two rows, top and bottom
-    // max-content: the row will only get small to the content size. auto will grow to the available space
-}
 #product-info-content {
     grid-row-gap: $gutter-global/ 2;
 }
@@ -270,13 +264,13 @@ button {
 }
 #cart .cart-item-count {
     display: block;
-    font-size: 0.08em;
+    font-size: 0.05em;
     border: 2px solid $white;
     width: 2em;
     height: 2em;
     line-height: 2em;
     position: absolute;
-    top: 2em;
+    top: 2.4em;
     right: 0;
 
 }
@@ -337,6 +331,11 @@ button {
 #cart-support p {
     color: inherit;
 }
+
+// 404 Styles
+#content-404 a {
+    color: $black;
+}
 table {
     table-layout: fixed;
     border-collapse: collapse;
@@ -386,3 +385,72 @@ td:last-child {
 .remove-line:hover .remove-text {
     display: block;
 }
+
+// Responsive Fitra Styles -----------------------------
+.grid > * {
+    min-width: 0;
+    min-height: 0;
+  }
+  
+  @media only screen and (max-width:1023px) {
+  
+    $add-to-cart-form-height: 143px;
+  
+    .sticky-side-image {
+      position: static;
+      width: 100%;
+      height: 90vw;
+    }
+  
+    .main-content {
+      min-height: 0;
+      padding: $line-global;
+      width: 100%;
+      margin: 0 auto;
+      grid-template-rows: auto; 
+    }
+  
+    .grid {
+      grid-row-gap: $line-global;
+    }
+  
+    .headline {
+      padding-bottom: 0;
+    }
+  
+    .headline-big {
+      font-size: 40vw;
+    }
+  
+    .two-columns {
+      grid-template-columns: 1fr;
+    }
+  
+    .form-wrapper {
+      height: $add-to-cart-form-height - $line-global; // accounting for grid-row-gap
+    }
+  
+    #add-to-cart-form {
+      position: fixed;
+      padding: 0 $line-global;
+      background: $white;
+      height: $add-to-cart-form-height;
+      bottom: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+    }
+  
+    #cart-lines td:last-child {
+      right: $line-global;
+    }
+  
+    #cart.cart-filled #cart-content {
+      padding-bottom: 0;
+    }
+  
+    #checkout-button {
+      position: static;
+      margin-top: $line-global;
+    }
+  }
