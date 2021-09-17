@@ -5,6 +5,6 @@ Shopify Theme Development Tutorial Week 1 - Fitra. This project will demonstrate
 `theme watch --allow-live flag` -will watch and auto-deploy new file changes to the theme.
 
 ## To View Project
-Vist: [link](https://p6n9qfm3birl9x0f-57374933184.shopifypreview.com)
+Vist: [link](https://tracy-superhi-project-1.myshopify.com/password)
 
 Password: auB25pZKyK1w7JP8
